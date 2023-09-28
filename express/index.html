@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <span id="Increment-count"></span>
+            <h2>increment</h2>
+
+        </div>
+        <div>
+            <span id="decrement">Decrement</span>
+            <h2>Decrement</h2>
+        </div>
+    </div>
+</body>
+<script>
+    const incrementcount = document.getElementById('Increment-count')
+    const decrement = document.getElementById("decrement");
+    if(sessionStorage.getItem('Decrement') === null){
+        updateCounter('type=increment');
+
+    }else{
+        updateCounter('type=Decrement');
+    }
+    function updateCounter(){
+        fetch('http://127.0.0.1:3002?'+type)
+        .then(res=>res.json())
+        .then(data=>{
+            increment.textContent = data.increment;
+            Decrement.textContent = data.Decrement;
+
+
+        })
+    }
+    sessionStorage.setItem('Decrement','x');
+</script>
+</html>
